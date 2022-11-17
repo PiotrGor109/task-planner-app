@@ -1,0 +1,13 @@
+spring:
+  h2.console:
+    enabled: true
+    path: '/console'
+  datasource:
+    url: 'jdbc:h2:file:D:/PRACA_AAAAAAAA/NAUKA_WAZNE/TaskPlannerApp/task-planner-app/task-planner-app/taskplanner'
+    user: 'sa'
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+
+

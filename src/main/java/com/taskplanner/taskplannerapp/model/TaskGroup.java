@@ -2,7 +2,11 @@ package com.taskplanner.taskplannerapp.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
+import org.springframework.data.domain.Pageable;
+
 import javax.persistence.*;
+import java.net.ContentHandler;
 import java.util.List;
 
 @Entity
@@ -14,6 +18,7 @@ public class TaskGroup {
     private int id;
     private String groupName;
     @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "taskGroupId")
+    @JsonManagedReference
     private List<Tasks> taskList;
 
 
@@ -40,6 +45,5 @@ public class TaskGroup {
     public void setTaskList(List<Tasks> taskList) {
         this.taskList = taskList;
     }
-
 
 }

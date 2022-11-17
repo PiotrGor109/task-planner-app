@@ -2,7 +2,9 @@ package com.taskplanner.taskplannerapp.model;
 
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
@@ -20,7 +22,9 @@ public class Tasks {
     private String description;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime taskDate;
+   // @JsonIgnore
     @ManyToOne
+    @JsonBackReference
     @JoinColumn(name="task_group_id")
     private TaskGroup taskGroupId;
 

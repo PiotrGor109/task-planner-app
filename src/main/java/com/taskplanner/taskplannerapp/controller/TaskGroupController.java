@@ -3,6 +3,7 @@ package com.taskplanner.taskplannerapp.controller;
 
 import com.taskplanner.taskplannerapp.model.TaskGroup;
 import com.taskplanner.taskplannerapp.model.TaskGroupRepository;
+import com.taskplanner.taskplannerapp.model.Tasks;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationEventPublisher;
@@ -50,6 +51,14 @@ public class TaskGroupController {
         return ResponseEntity.noContent().build();
     }
 
+
+    @PutMapping("/{id}")
+    ResponseEntity<TaskGroup> updateTaskGroup(@RequestBody TaskGroup newTaskGroup)
+    {
+        logger.info("TASKGROUP CONTROLLER - PUT METHOD - UPDATE TASK WITH id: "+ newTaskGroup.getId());
+        TaskGroup newUpdatedTaskGroup = repository.save(newTaskGroup);
+        return new ResponseEntity<>(newUpdatedTaskGroup, HttpStatus.OK);
+    }
 
 
 

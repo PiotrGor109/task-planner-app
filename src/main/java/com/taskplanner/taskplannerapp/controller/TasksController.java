@@ -41,14 +41,20 @@ public class TasksController {
         return new ResponseEntity<>(newTask, HttpStatus.CREATED);
     }
 
-    @DeleteMapping
+    @DeleteMapping("/{id}")
     ResponseEntity<Void> deleteTask(@PathVariable int id) throws Exception {
         logger.info("TASK CONTROLLER - DELETE METHOD - DELETE TASK WITH ID: "+id);
         repository.delete(repository.findById(id).orElse(null));
         return ResponseEntity.noContent().build();
     }
 
-
+    @PutMapping("/{id}")
+    ResponseEntity<Tasks> updateTask(@RequestBody Tasks newTasks)
+    {
+        logger.info("TASK CONTROLLER - PUT METHOD - UPDATE TASK WITH id: "+ newTasks.getId());
+        Tasks newUpdatedTask = repository.save(newTasks);
+        return new ResponseEntity<>(newUpdatedTask, HttpStatus.OK);
+    }
 
 
 

@@ -2,14 +2,9 @@ package com.taskplanner.taskplannerapp.controller.dto;
 
 public class TaskGroupDto {
 
-    int id;
-    String taskGroupName;
+    private int id;
+    private String taskGroupName;
 
-    public TaskGroupDto(int id, String taskGroupName)
-    {
-        this.id=id;
-        this.taskGroupName=taskGroupName;
-    }
 
     public int getId() {
         return id;
@@ -26,6 +21,46 @@ public class TaskGroupDto {
     public void setTaskGroupName(String taskGroupName) {
         this.taskGroupName = taskGroupName;
     }
+
+
+    public static final class TaskGroupDtoBuilder {
+        private int id;
+        private String taskGroupName;
+
+
+        public TaskGroupDtoBuilder() {
+        }
+
+        public static TaskGroupDto.TaskGroupDtoBuilder aTaskGroupDto() {
+            return new TaskGroupDto.TaskGroupDtoBuilder();
+        }
+
+        public TaskGroupDto.TaskGroupDtoBuilder withId(int id) {
+            this.id = id;
+            return this;
+        }
+
+        public TaskGroupDto.TaskGroupDtoBuilder withTaskGroupName(String taskGroupName) {
+            this.taskGroupName = taskGroupName;
+            return this;
+        }
+
+
+
+        public TaskGroupDto build() {
+            TaskGroupDto TaskGroupDto = new TaskGroupDto();
+            TaskGroupDto.taskGroupName = this.taskGroupName;
+            TaskGroupDto.id=this.id;
+            return TaskGroupDto;
+        }
+    }
+
+
+
+
+
+
+
 
 
 }

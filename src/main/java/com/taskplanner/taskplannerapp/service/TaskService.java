@@ -1,10 +1,12 @@
 package com.taskplanner.taskplannerapp.service;
 
 import com.taskplanner.taskplannerapp.controller.TaskController;
+import com.taskplanner.taskplannerapp.controller.dto.TaskGroupDto;
 import com.taskplanner.taskplannerapp.controller.dto.TaskGroupWithTasksReadDto;
 import com.taskplanner.taskplannerapp.controller.dto.TaskReadDto;
 import com.taskplanner.taskplannerapp.controller.dto.TaskReadWithGroupDto;
 import com.taskplanner.taskplannerapp.model.Task;
+import com.taskplanner.taskplannerapp.model.TaskGroup;
 import com.taskplanner.taskplannerapp.model.TaskRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -59,7 +61,6 @@ public class TaskService {
                     .withIsDone(task.isDone())
                     .withTaskDate(task.getTaskDate())
                     .withTaskName(task.getTaskName())
-                    .withGroup(task.getTaskGroup())
                     .build())
                 .collect(Collectors.toList());
     }

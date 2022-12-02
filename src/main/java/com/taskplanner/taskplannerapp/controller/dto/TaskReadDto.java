@@ -1,8 +1,6 @@
 package com.taskplanner.taskplannerapp.controller.dto;
 
-import com.taskplanner.taskplannerapp.model.TaskGroup;
 import java.time.LocalDateTime;
-import java.util.List;
 
 public class TaskReadDto {
 

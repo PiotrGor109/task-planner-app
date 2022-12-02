@@ -1,26 +1,29 @@
 package com.taskplanner.taskplannerapp.model;
 
-
-
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-import org.springframework.data.domain.Pageable;
-
 import javax.persistence.*;
-import java.net.ContentHandler;
 import java.util.List;
 
+
 @Entity
-@Table(name="task_group")
+@Table(name = "task_groups")
 public class TaskGroup {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
-    private String groupName;
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL, mappedBy = "taskGroupId")
-    @JsonManagedReference
-    private List<Tasks> taskList;
+    private String taskGroupName;
 
+    @OneToMany(mappedBy = "group")
+    private List<Task> tasks;
+
+
+    public List<Task> getTasks() {
+        return tasks;
+    }
+
+    public void setTasks(List<Task> tasks) {
+        this.tasks = tasks;
+    }
 
     public int getId() {
         return id;
@@ -30,20 +33,15 @@ public class TaskGroup {
         this.id = id;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getTaskGroupName() {
+        return taskGroupName;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName;
+    public void setTaskGroupName(String taskGroupName) {
+        this.taskGroupName = taskGroupName;
     }
 
-    public List<Tasks> getTaskList() {
-        return taskList;
-    }
 
-    public void setTaskList(List<Tasks> taskList) {
-        this.taskList = taskList;
-    }
+
 
 }

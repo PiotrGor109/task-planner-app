@@ -1,64 +1,51 @@
 package com.taskplanner.taskplannerapp.controller;
 
-
-import com.taskplanner.taskplannerapp.model.TaskGroup;
-import com.taskplanner.taskplannerapp.model.TaskGroupRepository;
-import com.taskplanner.taskplannerapp.model.Tasks;
+import com.taskplanner.taskplannerapp.controller.dto.TaskGroupDto;
+import com.taskplanner.taskplannerapp.controller.dto.TaskGroupWithTasksReadDto;
+import com.taskplanner.taskplannerapp.service.TaskGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.context.ApplicationEventPublisher;
-import org.springframework.data.domain.Pageable;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+
 @RestController
-@RequestMapping("/taskgroup")
+@RequestMapping("/taskgroups")
 public class TaskGroupController {
 
-    private final TaskGroupRepository repository;
-    private final ApplicationEventPublisher eventPublisher;
-    private static final Logger logger = LoggerFactory.getLogger(TaskGroupController.class);
 
-    TaskGroupController(final ApplicationEventPublisher eventPublisher, final TaskGroupRepository repository)
-    {
-        this.eventPublisher = eventPublisher;
-        this.repository = repository;
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
+    private TaskGroupService taskGroupService;
+
+
+    public TaskGroupController(TaskGroupService taskGroupService) {
+        this.taskGroupService = taskGroupService;
     }
 
+
+
+
+  //AD 1  - WYSWIETLANIE SAMYCH GRUP.
 
     @GetMapping
-    ResponseEntity<List<TaskGroup>> readAllTaskGroups(Pageable page)
+    public List<TaskGroupDto> getTaskGroups()
     {
-        logger.info("TASK-GROUP-CONTROLLER - GET METHOD");
-        return ResponseEntity.ok(repository.findAll(page).getContent());
-    }
-
-    @PostMapping
-    ResponseEntity<TaskGroup> createTaskGroup(@RequestBody TaskGroup newTaskGroup)
-    {
-        logger.info("TASK-GROUP-CONTROLLER - POST METHOD");
-        TaskGroup newTaskGroupUnit = repository.save(newTaskGroup);
-        return new ResponseEntity<>(newTaskGroup, HttpStatus.CREATED);
-    }
-
-    @DeleteMapping
-    ResponseEntity<Void> deleteTaskGroup(@PathVariable int id) throws Exception {
-        logger.info("TASK-GROUP-CONTROLLER - DELETE METHOD - DELETE TASKGROUP WITH ID: "+id);
-        repository.delete(repository.findById(id).orElse(null));
-        return ResponseEntity.noContent().build();
+        logger.info("getTaskGroups - Method - TaskGroupController");
+        return taskGroupService.readAllTaskGroups();
     }
 
 
-    @PutMapping("/{id}")
-    ResponseEntity<TaskGroup> updateTaskGroup(@RequestBody TaskGroup newTaskGroup)
-    {
-        logger.info("TASKGROUP CONTROLLER - PUT METHOD - UPDATE TASK WITH id: "+ newTaskGroup.getId());
-        TaskGroup newUpdatedTaskGroup = repository.save(newTaskGroup);
-        return new ResponseEntity<>(newUpdatedTaskGroup, HttpStatus.OK);
+//AD 2 - WYSWIETLANIE GRUP Z KOMENTERAMI
+
+    @GetMapping("/withtasks")
+    public List<TaskGroupWithTasksReadDto> readAllGroups() {
+        return taskGroupService.readAllGroupsWithTasks();
     }
+
+
 
 
 

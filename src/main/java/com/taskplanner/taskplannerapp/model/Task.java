@@ -1,18 +1,12 @@
 package com.taskplanner.taskplannerapp.model;
 
-
-
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
 import javax.persistence.*;
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name="tasks")
-public class Tasks {
+public class Task {
 
 
     @Id
@@ -20,14 +14,22 @@ public class Tasks {
     private int id;
     private String taskName;
     private String description;
+    private boolean isDone;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime taskDate;
-   // @JsonIgnore
-    @ManyToOne
-    @JsonBackReference
-    @JoinColumn(name="task_group_id")
-    private TaskGroup taskGroupId;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "task_group_id")
+    private TaskGroup group;
+
+
+    public TaskGroup getTaskGroup() {
+        return group;
+    }
+
+    public void setTaskGroup(TaskGroup taskGroup) {
+        this.group = taskGroup;
+    }
 
     public LocalDateTime getTaskDate() {
         return taskDate;
@@ -35,10 +37,6 @@ public class Tasks {
 
     public void setTaskDate(LocalDateTime taskDate) {
         this.taskDate = taskDate;
-    }
-
-    public void setTaskGroupId(TaskGroup taskGroupId) {
-        this.taskGroupId = taskGroupId;
     }
 
     public int getId() {
@@ -65,11 +63,12 @@ public class Tasks {
         this.description = description;
     }
 
-    public TaskGroup getTaskGroupId() {
-        return taskGroupId;
+
+    public boolean isDone() {
+        return isDone;
     }
 
-    public void setTaskGroup(TaskGroup taskGroupId) {
-        this.taskGroupId = taskGroupId;
+    public void setDone(boolean done) {
+        isDone = done;
     }
 }

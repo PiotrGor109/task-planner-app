@@ -3,6 +3,7 @@ package com.taskplanner.taskplannerapp.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 @Entity
 @Table(name="tasks")
@@ -22,13 +23,12 @@ public class Task {
     @JoinColumn(name = "task_group_id")
     private TaskGroup group;
 
-
-    public TaskGroup getTaskGroup() {
+    public TaskGroup getGroup() {
         return group;
     }
 
-    public void setTaskGroup(TaskGroup taskGroup) {
-        this.group = taskGroup;
+    public void setGroup(TaskGroup group) {
+        this.group = group;
     }
 
     public LocalDateTime getTaskDate() {

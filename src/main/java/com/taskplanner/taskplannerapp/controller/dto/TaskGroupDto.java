@@ -5,7 +5,6 @@ public class TaskGroupDto {
     private int id;
     private String taskGroupName;
 
-
     public int getId() {
         return id;
     }

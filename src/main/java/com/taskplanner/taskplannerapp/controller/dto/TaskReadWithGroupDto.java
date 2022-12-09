@@ -1,6 +1,10 @@
 package com.taskplanner.taskplannerapp.controller.dto;
 
+import com.taskplanner.taskplannerapp.controller.TaskController;
 import com.taskplanner.taskplannerapp.model.TaskGroup;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.time.LocalDateTime;
 
 public class TaskReadWithGroupDto {
@@ -11,6 +15,7 @@ public class TaskReadWithGroupDto {
     private boolean isDone;
     private LocalDateTime taskDate;
     private TaskGroupDto group;
+    private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
 
 
     public int getId() {
@@ -72,6 +77,10 @@ public class TaskReadWithGroupDto {
         private LocalDateTime taskDate;
         private TaskGroupDto group;
 
+
+
+
+
         public TaskReadWithGroupDtoBuilder() {
         }
 
@@ -103,11 +112,31 @@ public class TaskReadWithGroupDto {
             this.description = description;
             return this;
         }
+//
+//        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(TaskGroupDto group) {
+//
+//            this.group = group;
+//            return this;
+//        }
 
-        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(TaskGroupDto group) {
-            this.group = group;
+
+//        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(int id, String taskGroupName) {
+//            logger.info(id +" "+taskGroupName);
+//            TaskGroupDto taskGroupDto = new TaskGroupDto();
+//            taskGroupDto.setId(id);
+//            taskGroupDto.setTaskGroupName(taskGroupName);
+//            this.group = taskGroupDto;
+//            return this;
+//        }
+
+        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(int id, String taskGroupName) {
+            TaskGroupDto taskGroupDto = new TaskGroupDto();
+            taskGroupDto.setId(id);
+            taskGroupDto.setTaskGroupName(taskGroupName);
+            this.group = taskGroupDto;
             return this;
         }
+
 
 
         public TaskReadWithGroupDto build() {
@@ -121,6 +150,7 @@ public class TaskReadWithGroupDto {
             return TaskReadWithGroupDto;
         }
     }
+
 
 
 

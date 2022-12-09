@@ -1,5 +1,5 @@
 CREATE TABLE tasks (
-    id int PRIMARY KEY NOT NULL,
+    id int PRIMARY KEY auto_increment NOT NULL,
     task_name varchar(200),
     description varchar(200),
     task_date Timestamp,

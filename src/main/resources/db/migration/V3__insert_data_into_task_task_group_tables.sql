@@ -14,7 +14,7 @@ INSERT INTO tasks (id, task_name, description, task_date, task_group_id, is_done
 INSERT INTO tasks (id, task_name, description, task_date, task_group_id, is_done) values (6, 'Integration tests', 'integration tests of application','2022-12-17 13:30:00', 5, 0);
 INSERT INTO tasks (id, task_name, description, task_date, task_group_id, is_done) values (7, 'Application administration', 'creating admin user of application','2022-12-17 11:40:00', 1, 0);
 INSERT INTO tasks (id, task_name, description, task_date, task_group_id, is_done) values (8, 'Support customer consultation', 'Maintenance task 1','2022-12-17 14:23:00', 3, 0);
-INSERT INTO tasks (id, task_name, description, task_date, task_group_id, is_done) values (9, 'Error analyze', 'Creating patch','2022-12-17 15:30:00', 3, 0);
+
 
 
 

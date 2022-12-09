@@ -1,5 +1,7 @@
 package com.taskplanner.taskplannerapp.model;
 
+import com.taskplanner.taskplannerapp.controller.dto.TaskGroupDto;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -40,7 +42,6 @@ public class TaskGroup {
     public void setTaskGroupName(String taskGroupName) {
         this.taskGroupName = taskGroupName;
     }
-
 
 
 

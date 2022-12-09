@@ -32,7 +32,7 @@ public class TaskGroupService {
 
 
 
-       //  1. WYSWIETLANIE WSZYSTKICH GRUP TASKOW
+       //  1. WYSWIETLANIE WSZYSTKICH GRUP
 
     public List<TaskGroupDto> readAllTaskGroups()
     {
@@ -47,19 +47,18 @@ public class TaskGroupService {
                 .collect(Collectors.toList());
     }
 
-    private static TaskGroupDto mapToTaskGroupDto(TaskGroup taskGroup) {
-        return new TaskGroupDto(taskGroup.getId(), taskGroup.getTaskGroupName());
+    private static TaskGroupDto mapToTaskGroupDto(TaskGroup taskGroup)
+    {
+        return TaskGroupDto.TaskGroupDtoBuilder.aTaskGroupDto()
+                .withId(taskGroup.getId())
+                .withTaskGroupName(taskGroup.getTaskGroupName())
+                .build();
     }
 
 
 
 
-
-
-
-
-
-       //  2. WYSWIETLANIE WSZYSTKICH GRUP TASKOW RAZEM Z TASKAMI
+       //  2. WYSWIETLANIE WSZYSTKICH GRUP RAZEM Z TASKAMI
 
 
     public List<TaskGroupWithTasksReadDto> readAllGroupsWithTasks()
@@ -85,6 +84,28 @@ public class TaskGroupService {
     }
 
 
+    //  3. DODAWANIE GRUP
+
+    public TaskGroup addTaskGroup(TaskGroupDto taskGroup) {
+        logger.info("TASKGROUP SERVICE: POST - ADDTASK GROUP method");
+        TaskGroup newTaskGroup = new TaskGroup();
+        newTaskGroup.setId(taskGroup.getId());
+        newTaskGroup.setTaskGroupName(taskGroup.getTaskGroupName());
+        return taskGroupRepository.save(newTaskGroup);
+    }
 
 
+
+    //  4. USUWANIE GRUP
+
+    public void deleteTaskGroup(int id) {
+        logger.info("TASKGROUP DELETE: DELETE - TASKGROUP method");
+        TaskGroup taskGroupToDelete = taskGroupRepository.findById(id).orElseThrow(null);
+        taskGroupRepository.delete(taskGroupToDelete);
+    }
+
+    public TaskGroup editTaskGroup(TaskGroup taskGroup) {
+        logger.info("TASKGROUP PUT: PUT - TASKGROUP method");
+        return taskGroupRepository.save(taskGroup);
+    }
 }

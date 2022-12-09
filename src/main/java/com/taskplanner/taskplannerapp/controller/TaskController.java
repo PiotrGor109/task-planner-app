@@ -2,6 +2,7 @@ package com.taskplanner.taskplannerapp.controller;
 
 import com.taskplanner.taskplannerapp.controller.dto.TaskReadDto;
 import com.taskplanner.taskplannerapp.controller.dto.TaskReadWithGroupDto;
+import com.taskplanner.taskplannerapp.model.Task;
 import com.taskplanner.taskplannerapp.model.TaskRepository;
 import com.taskplanner.taskplannerapp.service.TaskService;
 import org.slf4j.Logger;
@@ -30,24 +31,36 @@ public class TaskController {
 
 
 
-    //AD 1.
-    @GetMapping
-    public List<TaskReadDto> getTasks()
-    {
-        return taskService.readAllTasks();
-    }
-
-
-    //AD 2.
-    @GetMapping("/withgroups")
+    //AD 1. WYSWIETLANIE
+    @GetMapping()
     public List<TaskReadWithGroupDto> getTasksWithGroups()
     {
         return taskService.readAllTasksWithGroups();
     }
 
 
+    //AD 2. DODAWANIE
+    @PostMapping()
+    public Task addTask(@RequestBody TaskReadWithGroupDto taskReadDto)
+    {
+        return taskService.addTask(taskReadDto);
+    }
 
 
+    //AD 3. USUWANIE
+    @DeleteMapping("/{id}")
+    public void deleteTask(@PathVariable int id)
+    {
+       taskService.deleteTask(id);
+    }
+
+
+    //AD 4. EDYTOWANIE
+    @PutMapping()
+    public void editTask(@RequestBody Task task)
+    {
+        taskService.editTask(task);
+    }
 
 
 

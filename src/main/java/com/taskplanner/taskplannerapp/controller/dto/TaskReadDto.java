@@ -1,5 +1,6 @@
 package com.taskplanner.taskplannerapp.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import java.time.LocalDateTime;
 
 public class TaskReadDto {
@@ -7,7 +8,8 @@ public class TaskReadDto {
     private int id;
     private String taskName;
     private String description;
-    private boolean isDone;
+    private boolean done;
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime taskDate;
 
 
@@ -43,22 +45,20 @@ public class TaskReadDto {
         this.taskDate = taskDate;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public boolean getDone() {
+        return done;
     }
 
     public void setDone(boolean done) {
-        isDone = done;
+        this.done = done;
     }
-
-
 
 
     public static final class TaskReadDtoBuilder {
         private int id;
         private String taskName;
         private String description;
-        private boolean isDone;
+        private boolean done;
         private LocalDateTime taskDate;
 
         public TaskReadDtoBuilder() {
@@ -73,8 +73,8 @@ public class TaskReadDto {
             return this;
         }
 
-        public TaskReadDto.TaskReadDtoBuilder withIsDone(boolean isDone) {
-            this.isDone = isDone;
+        public TaskReadDto.TaskReadDtoBuilder withDone(boolean done) {
+            this.done = done;
             return this;
         }
 
@@ -93,18 +93,14 @@ public class TaskReadDto {
             return this;
         }
 
-
         public TaskReadDto build() {
             TaskReadDto TaskReadDto = new TaskReadDto();
             TaskReadDto.taskName = this.taskName;
             TaskReadDto.id = this.id;
             TaskReadDto.description = this.description;
-            TaskReadDto.isDone = this.isDone;
+            TaskReadDto.done = this.done;
             TaskReadDto.taskDate = this.taskDate;
             return TaskReadDto;
         }
     }
-
-
-
 }

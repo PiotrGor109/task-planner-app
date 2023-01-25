@@ -8,7 +8,6 @@ public class TaskGroupWithTasksReadDto {
     private String taskGroupName;
     private List<TaskReadDto> tasks;
 
-
     public int getId() {
         return id;
     }
@@ -70,5 +69,4 @@ public class TaskGroupWithTasksReadDto {
             return TaskGroupWithTasksReadDto;
         }
     }
-
 }

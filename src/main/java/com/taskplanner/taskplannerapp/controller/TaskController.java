@@ -1,6 +1,5 @@
 package com.taskplanner.taskplannerapp.controller;
 
-import com.taskplanner.taskplannerapp.controller.dto.TaskReadDto;
 import com.taskplanner.taskplannerapp.controller.dto.TaskReadWithGroupDto;
 import com.taskplanner.taskplannerapp.model.Task;
 import com.taskplanner.taskplannerapp.model.TaskRepository;
@@ -25,13 +24,10 @@ public class TaskController {
         this.taskService = taskService;
         this.repository = repository;
         this.eventPublisher = eventPublisher;
-
     }
 
 
-
-
-    //AD 1. WYSWIETLANIE
+    //AD 1. SHOWING TASK
     @GetMapping()
     public List<TaskReadWithGroupDto> getTasksWithGroups()
     {
@@ -39,7 +35,7 @@ public class TaskController {
     }
 
 
-    //AD 2. DODAWANIE
+    //AD 2. ADDING TASK
     @PostMapping()
     public Task addTask(@RequestBody TaskReadWithGroupDto taskReadDto)
     {
@@ -47,7 +43,7 @@ public class TaskController {
     }
 
 
-    //AD 3. USUWANIE
+    //AD 3. DELETING TASK
     @DeleteMapping("/{id}")
     public void deleteTask(@PathVariable int id)
     {
@@ -55,14 +51,18 @@ public class TaskController {
     }
 
 
-    //AD 4. EDYTOWANIE
+    //AD 4. EDITING TASK
     @PutMapping()
-    public void editTask(@RequestBody Task task)
+    public void editTask(@RequestBody TaskReadWithGroupDto taskReadDto)
     {
-        taskService.editTask(task);
+        taskService.editTask(taskReadDto);
     }
 
 
-
-
+    //AD 5. SHOWING BY DATE
+    @GetMapping("/{task_date}")
+    public List<TaskReadWithGroupDto> getTasksWithDate(@PathVariable String task_date)
+        {
+            return taskService.readAllTasksWithDate(task_date);
+        }
 }

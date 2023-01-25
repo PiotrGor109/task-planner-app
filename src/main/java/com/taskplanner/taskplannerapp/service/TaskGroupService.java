@@ -10,19 +10,15 @@ import com.taskplanner.taskplannerapp.model.TaskRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
 public class TaskGroupService {
 
-
     private final TaskGroupRepository taskGroupRepository;
     private final TaskRepository taskRepository;
     private static final Logger logger = LoggerFactory.getLogger(TaskGroupController.class);
-
-
 
 
     public TaskGroupService(TaskGroupRepository taskGroupRepository, TaskRepository taskRepository) {
@@ -32,14 +28,12 @@ public class TaskGroupService {
 
 
 
-       //  1. WYSWIETLANIE WSZYSTKICH GRUP
-
+       //  1. SHOWING GROUPS
     public List<TaskGroupDto> readAllTaskGroups()
     {
         logger.info("TASKGROUP SERVICE: GET TASKGROUPS method");
         return mapToTaskGroupDtos(taskGroupRepository.findAll());
     }
-
 
     public static List<TaskGroupDto> mapToTaskGroupDtos(List<TaskGroup> readAllTaskGroups) {
         return  readAllTaskGroups.stream()
@@ -58,9 +52,7 @@ public class TaskGroupService {
 
 
 
-       //  2. WYSWIETLANIE WSZYSTKICH GRUP RAZEM Z TASKAMI
-
-
+       //  2. SHOWING GROUPS WITH TASKS
     public List<TaskGroupWithTasksReadDto> readAllGroupsWithTasks()
     {
         logger.info("TASKGROUP SERVICE: GET TASKGROUPSWITHTASKS method");
@@ -74,7 +66,7 @@ public class TaskGroupService {
                             .withId(task.getId())
                             .withTaskDate(task.getTaskDate())
                             .withTaskName(task.getTaskName())
-                            .withIsDone(task.isDone())
+                            .withDone(task.getDone())
                             .build()
                         )
                         .collect(Collectors.toList())
@@ -84,8 +76,7 @@ public class TaskGroupService {
     }
 
 
-    //  3. DODAWANIE GRUP
-
+    //  3. ADDING GROUPS
     public TaskGroup addTaskGroup(TaskGroupDto taskGroup) {
         logger.info("TASKGROUP SERVICE: POST - ADDTASK GROUP method");
         TaskGroup newTaskGroup = new TaskGroup();
@@ -96,16 +87,18 @@ public class TaskGroupService {
 
 
 
-    //  4. USUWANIE GRUP
-
+    //  4. DELETING GROUPS
     public void deleteTaskGroup(int id) {
         logger.info("TASKGROUP DELETE: DELETE - TASKGROUP method");
         TaskGroup taskGroupToDelete = taskGroupRepository.findById(id).orElseThrow(null);
         taskGroupRepository.delete(taskGroupToDelete);
     }
 
+    //  5. EDITING GROUPS
     public TaskGroup editTaskGroup(TaskGroup taskGroup) {
         logger.info("TASKGROUP PUT: PUT - TASKGROUP method");
         return taskGroupRepository.save(taskGroup);
     }
 }
+
+

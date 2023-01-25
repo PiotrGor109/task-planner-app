@@ -1,0 +1,8 @@
+2023-01-18 14:37:00 jdbc[4]: exception
+org.h2.jdbc.JdbcSQLDataException: Wartość za długa dla kolumny "TASK_NAME VARCHAR(200)": "'asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasa... (210)"
+Value too long for column "TASK_NAME VARCHAR(200)": "'asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasa... (210)"; SQL statement:
+insert into tasks (id, description, done, task_group_id, task_date, task_name) values (default, ?, ?, ?, ?, ?) [22001-200]
+2023-01-18 14:38:14 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Wartość za długa dla kolumny "TASK_NAME VARCHAR(200)": "'asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasa... (348)"
+Value too long for column "TASK_NAME VARCHAR(200)": "'asasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasasa... (348)"; SQL statement:
+insert into tasks (id, description, done, task_group_id, task_date, task_name) values (default, ?, ?, ?, ?, ?) [22001-200]

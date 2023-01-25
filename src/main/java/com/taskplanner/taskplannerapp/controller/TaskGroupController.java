@@ -2,13 +2,11 @@ package com.taskplanner.taskplannerapp.controller;
 
 import com.taskplanner.taskplannerapp.controller.dto.TaskGroupDto;
 import com.taskplanner.taskplannerapp.controller.dto.TaskGroupWithTasksReadDto;
-import com.taskplanner.taskplannerapp.model.Task;
 import com.taskplanner.taskplannerapp.model.TaskGroup;
 import com.taskplanner.taskplannerapp.service.TaskGroupService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 
 
@@ -24,9 +22,7 @@ public class TaskGroupController {
     }
 
 
-
-  //AD 1  - WYSWIETLANIE SAMYCH GRUP
-
+  //AD 1  - SHOWING GROUPS
     @GetMapping
     public List<TaskGroupDto> getTaskGroups()
     {
@@ -35,8 +31,7 @@ public class TaskGroupController {
     }
 
 
-    //AD 2 - WYSWIETLANIE GRUP Z KOMENTERAMI
-
+    //AD 2 -SHOWING GROUPS WITH TASKS
     @GetMapping("/withtasks")
     public List<TaskGroupWithTasksReadDto> readAllGroups() {
         return taskGroupService.readAllGroupsWithTasks();
@@ -44,8 +39,7 @@ public class TaskGroupController {
 
 
 
-    //AD 3 - DODAWANIE GRUP PUSTYCH
-
+    //AD 3 - ADDING GROUPS
     @PostMapping()
     public TaskGroup addTaskGroup(@RequestBody TaskGroupDto taskGroupDto)
     {
@@ -53,8 +47,7 @@ public class TaskGroupController {
     }
 
 
-    //AD 4 - USUWANIE GRUP PUSTYCH
-
+    //AD 4 - DELETEING GROUPS
     @DeleteMapping("/{id}")
     public void deleteTaskGroup(@PathVariable int id)
     {
@@ -62,13 +55,11 @@ public class TaskGroupController {
     }
 
 
-    //AD 5 - EDYTOWANIE GRUP PUSTYCH
+    //AD 5 - EDITING GROUPS
     @PutMapping()
     public void editTaskGroup(@RequestBody TaskGroup taskGroup)
     {
         taskGroupService.editTaskGroup(taskGroup);
+
     }
-
-
-
 }

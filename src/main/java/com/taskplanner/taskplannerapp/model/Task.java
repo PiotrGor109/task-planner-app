@@ -3,7 +3,6 @@ package com.taskplanner.taskplannerapp.model;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.List;
 
 @Entity
 @Table(name="tasks")
@@ -15,7 +14,7 @@ public class Task {
     private int id;
     private String taskName;
     private String description;
-    private boolean isDone;
+    private boolean done;
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
     private LocalDateTime taskDate;
 
@@ -63,12 +62,13 @@ public class Task {
         this.description = description;
     }
 
-
-    public boolean isDone() {
-        return isDone;
+    public boolean getDone() {
+        return done;
     }
 
     public void setDone(boolean done) {
-        isDone = done;
+        this.done = done;
     }
+
+
 }

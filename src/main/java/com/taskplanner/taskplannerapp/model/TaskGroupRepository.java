@@ -9,18 +9,11 @@ import java.util.Optional;
 @Repository
 public interface TaskGroupRepository extends JpaRepository<TaskGroup, Integer>
 {
-
-
     Page<TaskGroup> findAll(Pageable page);
     Optional<TaskGroup> findById(Integer id);
     TaskGroup save(TaskGroup entity);
     void delete(TaskGroup entity);
     boolean existsById(int id);
-
-
-
-
-
 }
 
 

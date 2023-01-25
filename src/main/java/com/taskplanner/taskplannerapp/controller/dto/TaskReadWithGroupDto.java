@@ -1,10 +1,9 @@
 package com.taskplanner.taskplannerapp.controller.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.taskplanner.taskplannerapp.controller.TaskController;
-import com.taskplanner.taskplannerapp.model.TaskGroup;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.time.LocalDateTime;
 
 public class TaskReadWithGroupDto {
@@ -12,7 +11,7 @@ public class TaskReadWithGroupDto {
     private int id;
     private String taskName;
     private String description;
-    private boolean isDone;
+    private boolean done;
     private LocalDateTime taskDate;
     private TaskGroupDto group;
     private static final Logger logger = LoggerFactory.getLogger(TaskController.class);
@@ -50,12 +49,12 @@ public class TaskReadWithGroupDto {
         this.taskDate = taskDate;
     }
 
-    public boolean isDone() {
-        return isDone;
+    public boolean getDone() {
+        return done;
     }
 
     public void setDone(boolean done) {
-        isDone = done;
+        this.done = done;
     }
 
     public TaskGroupDto getGroup() {
@@ -68,17 +67,14 @@ public class TaskReadWithGroupDto {
 
 
 
-
     public static final class TaskReadWithGroupDtoBuilder {
         private int id;
         private String taskName;
         private String description;
-        private boolean isDone;
+        private boolean done;
+        @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
         private LocalDateTime taskDate;
         private TaskGroupDto group;
-
-
-
 
 
         public TaskReadWithGroupDtoBuilder() {
@@ -93,8 +89,8 @@ public class TaskReadWithGroupDto {
             return this;
         }
 
-        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withIsDone(boolean isDone) {
-            this.isDone = isDone;
+        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withDone(boolean done) {
+            this.done = done;
             return this;
         }
 
@@ -112,22 +108,7 @@ public class TaskReadWithGroupDto {
             this.description = description;
             return this;
         }
-//
-//        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(TaskGroupDto group) {
-//
-//            this.group = group;
-//            return this;
-//        }
 
-
-//        public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(int id, String taskGroupName) {
-//            logger.info(id +" "+taskGroupName);
-//            TaskGroupDto taskGroupDto = new TaskGroupDto();
-//            taskGroupDto.setId(id);
-//            taskGroupDto.setTaskGroupName(taskGroupName);
-//            this.group = taskGroupDto;
-//            return this;
-//        }
 
         public TaskReadWithGroupDto.TaskReadWithGroupDtoBuilder withGroup(int id, String taskGroupName) {
             TaskGroupDto taskGroupDto = new TaskGroupDto();
@@ -138,20 +119,15 @@ public class TaskReadWithGroupDto {
         }
 
 
-
         public TaskReadWithGroupDto build() {
             TaskReadWithGroupDto TaskReadWithGroupDto = new TaskReadWithGroupDto();
             TaskReadWithGroupDto.taskName = this.taskName;
             TaskReadWithGroupDto.id = this.id;
             TaskReadWithGroupDto.description = this.description;
-            TaskReadWithGroupDto.isDone = this.isDone;
+            TaskReadWithGroupDto.done = this.done;
             TaskReadWithGroupDto.taskDate = this.taskDate;
             TaskReadWithGroupDto.group=this.group;
             return TaskReadWithGroupDto;
         }
     }
-
-
-
-
 }

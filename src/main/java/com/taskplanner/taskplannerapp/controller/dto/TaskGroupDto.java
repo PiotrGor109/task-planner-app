@@ -26,7 +26,6 @@ public class TaskGroupDto {
         private int id;
         private String taskGroupName;
 
-
         public TaskGroupDtoBuilder() {
         }
 
@@ -44,8 +43,6 @@ public class TaskGroupDto {
             return this;
         }
 
-
-
         public TaskGroupDto build() {
             TaskGroupDto TaskGroupDto = new TaskGroupDto();
             TaskGroupDto.taskGroupName = this.taskGroupName;
@@ -53,13 +50,4 @@ public class TaskGroupDto {
             return TaskGroupDto;
         }
     }
-
-
-
-
-
-
-
-
-
 }

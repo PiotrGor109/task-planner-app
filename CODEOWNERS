@@ -1,1 +1,8 @@
-@PiotrGor109
+# Właściciel całego repozytorium
+* @PiotrGor109
+
+# Właściciel katalogu src/
+src/ @PiotrGor109
+
+# Właściciel katalogu tests/
+tests/ @PiotrGor109

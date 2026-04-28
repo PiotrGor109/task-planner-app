@@ -15,8 +15,9 @@ spec:
     spec:
       containers:
       - name: task-planner-app
-        image: harbor.local/library/task-planner-app:8
+        image: harbor.local/library/task-planner-app:13
         ports:
         - containerPort: 8080
       imagePullSecrets:
       - name: harbor-secret
+

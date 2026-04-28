@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: task-planner-app
+  namespace: default
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: task-planner-app
+  template:
+    metadata:
+      labels:
+        app: task-planner-app
+    spec:
+      containers:
+      - name: task-planner-app
+        image: harbor.local/library/task-planner-app:8
+        ports:
+        - containerPort: 8080
+      imagePullSecrets:
+      - name: harbor-secret
